@@ -34,22 +34,5 @@ class OperacioneServiceImplTest {
 	
 	}
 	
-//	@Test
-//	public void testResta() throws Exception {
-//		
-//		 operacionesServiceImpl = new OperacionesServiceImpl();
-//		
-//		//GIVEN
-//		BigDecimal resultadoEsperado =  new BigDecimal(16.0);
-//		BigDecimal operador2 =  new BigDecimal(36.0) ;
-//		BigDecimal operador1 =  new BigDecimal(20.0) ;
-//		
-//		//WHEN
-//		BigDecimal resultadoReal = operacionesServiceImpl.resta(operador1, operador2);
-//
-//		//THEN
-//		assertThat(resultadoReal,  Matchers.comparesEqualTo(resultadoEsperado));
-//	
-//	}
 
 }
