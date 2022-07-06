@@ -48,6 +48,8 @@ public class OperacionesServiceImpl implements OperacionesService {
 		BigDecimal ope2 = BigDecimal.valueOf(Double.valueOf(operador2));
 
 		BigDecimal resultRes = (ope1).subtract(ope2);
+		
+		tracerAPI.trace(resultRes);
 
 		return resultRes;
 	}
