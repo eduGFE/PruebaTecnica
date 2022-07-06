@@ -6,7 +6,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -36,8 +35,8 @@ public class OperacionesController {
 	@ResponseStatus(HttpStatus.OK)
 	@GetMapping(value = "/suma/{operador1}/{operador2}", headers = "Accept=application/json")
 	public BigDecimal suma(
-            @ApiParam(name = "operador1", required = true, value = "Operador 1", example = "1")@PathVariable BigDecimal operador1,
-            @ApiParam(name = "operador2", required = true, value = "Operador 2", example = "2")@PathVariable  BigDecimal operador2)
+            @ApiParam(name = "operador1", required = true, value = "Operador 1", example = "1")@PathVariable String operador1,
+            @ApiParam(name = "operador2", required = true, value = "Operador 2", example = "2")@PathVariable  String operador2)
 			throws Exception {
 		return operacionesService.suma(operador1, operador2);
 	}
@@ -52,8 +51,8 @@ public class OperacionesController {
 	@ResponseStatus(HttpStatus.OK)
 	@GetMapping(value = "/resta/{operador1}/{operador2}", headers = "Accept=application/json")
 	public BigDecimal resta(
-            @ApiParam(name = "operador1", required = true, value = "Operador 1", example = "1")@PathVariable BigDecimal operador1,
-            @ApiParam(name = "operador2", required = true, value = "Operador 2", example = "2")@PathVariable  BigDecimal operador2)
+            @ApiParam(name = "operador1", required = true, value = "Operador 1", example = "1")@PathVariable String operador1,
+            @ApiParam(name = "operador2", required = true, value = "Operador 2", example = "2")@PathVariable  String operador2)
 			throws Exception {
 		return operacionesService.resta(operador1, operador2);
 	}

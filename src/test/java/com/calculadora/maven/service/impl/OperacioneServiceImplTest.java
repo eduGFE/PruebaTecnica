@@ -8,31 +8,50 @@ import org.hamcrest.Matchers;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 
+import com.calculadora.maven.util.UtilClass;
+
 class OperacioneServiceImplTest {
 	
 	@Autowired
 	OperacionesServiceImpl operacionesServiceImpl;
 	
 	@Test
-	public void operationsShouldReturnExpectedValueWhenOperandsAreValid() throws Exception {
+	public void testSuma() throws Exception {
 		
 		 operacionesServiceImpl = new OperacionesServiceImpl();
 		
 		//GIVEN
-		BigDecimal resultadoResta =  new BigDecimal(16.0) ;
+		String stringOperador1 =  new String("20.0") ;
+		String stringOperador2 =  new String("36.0") ;
 		BigDecimal resultadoSuma =  new BigDecimal(56.0) ;
-		BigDecimal operador1 =  new BigDecimal(20.0) ;
-		BigDecimal operador2 =  new BigDecimal(36.0) ;
 		
 		//WHEN
-		BigDecimal resultadoRealSuma = operacionesServiceImpl.suma(operador1, operador2);
-		BigDecimal resultadoRealResta = operacionesServiceImpl.resta(operador2,operador1);
+		BigDecimal resultadoRealSuma = operacionesServiceImpl.suma(stringOperador1,stringOperador2);
 		
 		//THEN
 		assertThat(resultadoSuma,  Matchers.comparesEqualTo(resultadoRealSuma));
-		assertThat(resultadoResta,  Matchers.comparesEqualTo(resultadoRealResta));
 	
 	}
+	
+	@Test
+	public void testResta() {
+		
+		 operacionesServiceImpl = new OperacionesServiceImpl();
+		
+		//GIVEN
+		String stringOperador1 =  new String("20.0") ;
+		String stringOperador2 =  new String("36.0") ;
+		BigDecimal resultadoSuma =  new BigDecimal(16.0) ;
+		
+		//WHEN
+		BigDecimal resultadoRealSuma = operacionesServiceImpl.resta(stringOperador2,stringOperador1);
+		
+		//THEN
+		assertThat(resultadoSuma,  Matchers.comparesEqualTo(resultadoRealSuma));
+	
+	}
+	
+	
 	
 
 }
