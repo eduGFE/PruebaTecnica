@@ -4,8 +4,7 @@ import java.math.BigDecimal;
 
 public interface OperacionesService {
 	
-	BigDecimal suma(String operador1,String operador2);
+	BigDecimal operacion(String operador1,String operando,String operador2);
 	
-	BigDecimal resta(String operador1, String operador2);
 
 }

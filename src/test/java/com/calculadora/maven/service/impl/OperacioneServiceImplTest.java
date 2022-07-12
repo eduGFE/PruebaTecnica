@@ -1,57 +1,46 @@
 package com.calculadora.maven.service.impl;
 
-import static org.junit.Assert.assertThat;
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
 import java.math.BigDecimal;
 
-import org.hamcrest.Matchers;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 
-import com.calculadora.maven.util.UtilClass;
+import com.calculadora.maven.exceptions.InvalidOperatorException;
+
 
 class OperacioneServiceImplTest {
-	
+
 	@Autowired
 	OperacionesServiceImpl operacionesServiceImpl;
-	
+
 	@Test
-	public void testSuma() throws Exception {
+	public void testOperacion() {
 		
-		 operacionesServiceImpl = new OperacionesServiceImpl();
-		
-		//GIVEN
-		String stringOperador1 =  new String("20.0") ;
-		String stringOperador2 =  new String("36.0") ;
-		BigDecimal resultadoSuma =  new BigDecimal(56.0) ;
-		
-		//WHEN
-		BigDecimal resultadoRealSuma = operacionesServiceImpl.suma(stringOperador1,stringOperador2);
-		
-		//THEN
-		assertThat(resultadoSuma,  Matchers.comparesEqualTo(resultadoRealSuma));
-	
+		operacionesServiceImpl = new OperacionesServiceImpl();
+
+		// GIVEN
+		String operador1 = new String("20.0");
+		String operador2 = new String("36.0");
+		BigDecimal resultadoSuma = new BigDecimal("56.0");
+		BigDecimal resultadoResta = new BigDecimal("-16.0");
+		String simboloValidoSuma = "+";
+		String simboloValidoResta = "-";
+		String operadorNoValido = "a";
+
+		// WHEN
+		BigDecimal resultadoRealSuma = operacionesServiceImpl.operacion(operador1, simboloValidoSuma, operador2);
+		BigDecimal resultadoRealResta = operacionesServiceImpl.operacion(operador1, simboloValidoResta, operador2);
+
+		// THEN
+		assertEquals(resultadoSuma, resultadoRealSuma);
+		assertEquals(resultadoRealResta, resultadoResta);
+		assertThrows(InvalidOperatorException.class,() -> operacionesServiceImpl.operacion(operador1, operadorNoValido, operador2));
+		assertThrows(InvalidOperatorException.class,() -> operacionesServiceImpl.operacion(operadorNoValido, simboloValidoSuma, operador2));
+
 	}
-	
-	@Test
-	public void testResta() {
-		
-		 operacionesServiceImpl = new OperacionesServiceImpl();
-		
-		//GIVEN
-		String stringOperador1 =  new String("20.0") ;
-		String stringOperador2 =  new String("36.0") ;
-		BigDecimal resultadoSuma =  new BigDecimal(16.0) ;
-		
-		//WHEN
-		BigDecimal resultadoRealSuma = operacionesServiceImpl.resta(stringOperador2,stringOperador1);
-		
-		//THEN
-		assertThat(resultadoSuma,  Matchers.comparesEqualTo(resultadoRealSuma));
-	
-	}
-	
-	
-	
 
 }
